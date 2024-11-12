@@ -8,6 +8,7 @@ namespace AdventureGame
 {
 	public class Functions
 	{
+		// Clears screen after reading a key
 		public static void ClearScreen()
 		{
 			Console.WriteLine("Hit a key to proceed.");
@@ -15,6 +16,8 @@ namespace AdventureGame
 			Console.Clear();
 		}
 
+		// Calls a battle
+		// Accepts a player object, enemy object and inventory to be used during battle
 		public static void BattleEntity(Entity player, Entity enemy, List<Item> itemList)
 		{
 			Console.WriteLine($"Initiating battle with level {enemy.Level + 1} {enemy.Name} who has {enemy.Health} HP.");
@@ -23,12 +26,12 @@ namespace AdventureGame
 
 			while (true)
 			{
-				if (player.Health <= 0)
+				if (player.Health < 1)
 				{
 					Console.WriteLine($"Player {player.Name} died. Running away from battle.");
 					break;
 				}
-				if (enemy.Health <= 0)
+				if (enemy.Health < 1)
 				{
 					Console.WriteLine($"{enemy.Name} died.");
 					player.RewardExp((enemy.Level + 1) * 15);
