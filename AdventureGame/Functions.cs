@@ -65,12 +65,12 @@ namespace AdventureGame
 						}
 
 						for (int i = 0; i < inv.Count; i++)
-							Console.WriteLine($"[{i}] {inv[i].Amount} {itemList[i].Name}. {itemList[i].GetItemDescription()}.");
+							Console.WriteLine($"[{i}] {inv[i].Amount} {inv[i].Name}. {inv[i].GetItemDescription()}.");
 
 						Console.Write("Your pick: ");
-						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < itemList.Count)
+						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < inv.Count)
 						{
-							ItemManager.UseItem(itemList, itemList[itemToUse].Name, player);
+							inv.UseItem(inv[itemToUse].Name, player);
 						}
 						break;
 				}
