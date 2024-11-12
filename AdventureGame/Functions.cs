@@ -24,14 +24,14 @@ namespace AdventureGame
 			Console.WriteLine($"Level {player.Level + 1} player {player.Name} has {player.Health} HP.");
 			ClearScreen();
 
-			while (true)
+			while (true) // Makes the battle an infinite loop until battle is over
 			{
-				if (player.Health < 1)
+				if (player.Health < 1) // Checks if player health is below 1
 				{
 					Console.WriteLine($"Player {player.Name} died. Running away from battle.");
 					break;
 				}
-				if (enemy.Health < 1)
+				if (enemy.Health < 1) // Checks if enemy health is below 1
 				{
 					Console.WriteLine($"{enemy.Name} died.");
 					player.RewardExp((enemy.Level + 1) * 15);
@@ -39,16 +39,19 @@ namespace AdventureGame
 					break;
 				}
 
+				// Asks for option in battle menu
 				Console.WriteLine("What do you want to do? (A)ttack, (I)tem or (R)un?: ");
 				char optionInBattle = Console.ReadKey().KeyChar;
 				Console.WriteLine();
 
+				// Checks for user option to run before doing switch case
 				if (optionInBattle == 'r' || optionInBattle == 'R')
 				{
 					Console.WriteLine($"Player {player.Name} ran away from battle.");
 					break;
 				}
 
+				// Switch case that checks user option in battle menu
 				switch (optionInBattle)
 				{
 					case 'a' or 'A':
