@@ -3,7 +3,8 @@
 	// Define the Entity class to represent a player or enemy character
 	public class Entity
 	{
-		public string Name { get; set; }	// Name of the entity
+		public string Name { get; set; }    // Name of the entity
+		public int MaxHealth { get; set; }     // Health points of the entity
 		public int Health { get; set; }		// Health points of the entity
 		public int Level { get; set; }		// Level of the entity
 		public int Experience { get; set; }	// Current experience points
@@ -50,7 +51,9 @@
 			while (Experience >= GetRequiredExperience())
 			{
 				Level++;
-				Console.WriteLine($"{Name} leveled up to level {Level + 1}.");
+				MaxHealth = 100 + Level * 10; // Example of increasing max health per level
+				Health = 100 + Level * 10; // Heals player on level up
+				Console.WriteLine($"{Name} leveled up to level {Level + 1}, health and max health is now {MaxHealth}.");
 			}
 		}
 
