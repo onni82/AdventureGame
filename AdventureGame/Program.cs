@@ -25,7 +25,7 @@ namespace AdventureGame
 			BattleEntity(user, orc, inventory);
 			ClearScreen();
 
-			AddItem(inventory, "Potion", 5);
+			inventory.AddItem("Potion", 5);
 			inventory.SortByName();
 
 			Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
@@ -33,7 +33,7 @@ namespace AdventureGame
 			BattleEntity(user, elf, inventory);
 			ClearScreen();
 
-			AddItem(inventory, "Greater Potion", 10);
+			inventory.AddItem("Greater Potion", 10);
 			inventory.SortByName();
 			ClearScreen();
 
