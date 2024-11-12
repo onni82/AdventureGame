@@ -21,24 +21,24 @@ namespace AdventureGame
 			inventory.AddItem("Potion", 2);
 
 			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
-			inventory.Sort();
+			inventory.SortByName();
 			BattleEntity(user, orc, inventory);
 			ClearScreen();
 
 			AddItem(inventory, "Potion", 5);
-			inventory.Sort();
+			inventory.SortByName();
 
 			Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
-			inventory.Sort();
+			inventory.SortByName();
 			BattleEntity(user, elf, inventory);
 			ClearScreen();
 
 			AddItem(inventory, "Greater Potion", 10);
-			inventory.Sort();
+			inventory.SortByName();
 			ClearScreen();
 
 			Entity ent = new() { Name = "Ent", Health = 30, Level = 1 };
-			inventory.Sort();
+			inventory.SortByName();
 			BattleEntity(user, ent, inventory);
 			ClearScreen();
 
