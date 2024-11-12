@@ -76,15 +76,20 @@ namespace AdventureGame
 							Console.WriteLine($"[{i}] {inv[i].Amount} {inv[i].Name}. {inv[i].GetItemDescription()}.");
 
 						Console.Write("Your pick: ");
-						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < inv.Count)
+						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < inv.Count && itemToUse >= 0)
 						{
 							inv.UseItem(inv[itemToUse].Name, player);
+							break;
 						}
-						break;
+						else
+						{
+							Console.WriteLine("Invalid selection. Please choose a valid item.");
+						}
+						return;
 
 					default:
-                        Console.WriteLine("Invalid optioin! Try again.");
-						break;
+                        Console.WriteLine("Invalid option! Try again.");
+						return;
 				}
 
 				if (enemy.Health > 0)
