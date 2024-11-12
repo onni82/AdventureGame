@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdventureGame
 {
-	public class Inventory
+	public class Inventory : IEnumerable<Item>
 	{
 		private List<Item> inventory;
 		private readonly object lockObject = new object();
@@ -87,6 +88,35 @@ namespace AdventureGame
 					inventory.RemoveAt(index);
 				}
 			}
+		}
+
+		// Sorts items by Name
+		public void SortByName()
+		{
+			lock (lockObject)
+			{
+				inventory = inventory.OrderBy(item => item.Name).ToList();
+			}
+		}
+
+		// Sorts items by Amount
+		public void SortByAmount()
+		{
+			lock (lockObject)
+			{
+				inventory = inventory.OrderByDescending(item => item.Amount).ToList();
+			}
+		}
+
+		// IEnumerable implementation to enable foreach and LINQ support
+		public IEnumerator<Item> GetEnumerator()
+		{
+			return inventory.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

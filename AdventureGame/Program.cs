@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace AdventureGame
 {
@@ -7,7 +8,8 @@ namespace AdventureGame
 	{
 		static void Main(string[] args)
 		{
-			Entity user = new Entity { Name = args.Length > 0 ? args[0] : GetPlayerName() };
+			Entity user = new Entity();
+			user.Name = args.Length > 0 ? args[0] : user.GetPlayerName();
 			user.Health = 20;
 			user.Level = 0;
 			user.Experience = 0;
@@ -15,7 +17,8 @@ namespace AdventureGame
 			Console.WriteLine($"Hello {user.Name}. Let's start your adventure. You start with two potions.");
 			ClearScreen();
 
-			List<Item> inventory = new() { new Item { Name = "Potion", Amount = 2 } };
+			Inventory inventory = new();
+			inventory.AddItem("Potion", 2);
 
 			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
 			inventory.Sort();

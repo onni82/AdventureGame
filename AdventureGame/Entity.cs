@@ -55,7 +55,7 @@
 		}
 
 		// Gets a string from Console.ReadLine
-		public static string GetPlayerName()
+		public string GetPlayerName()
 		{
 			Console.Write("What's your name? ");
 			return Console.ReadLine();
