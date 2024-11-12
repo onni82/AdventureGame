@@ -49,6 +49,13 @@ namespace AdventureGame
 				Entity elf = new Entity { Name = "Elven King", MaxHealth = 25, Health = 25, Level = 0 };
 				Functions.BattleEntity(user, elf, inventory);
 				Functions.ClearScreen();
+
+				// Reward system and healing
+				Console.WriteLine($"You earned {10} experience for defeating {elf.Name}.");
+				user.Experience += 10;
+				user.LevelUp();  // Level up the player if enough experience is gained
+				Console.WriteLine($"{user.Name} is now level {user.Level + 1}!");
+				Functions.ClearScreen();
 			}
 			else
 			{
@@ -56,13 +63,6 @@ namespace AdventureGame
 				Console.WriteLine("You choose not to explore the forest and head towards the town.");
 				Functions.ClearScreen();
 			}
-
-			// Reward system and healing
-			Console.WriteLine($"You earned {10} experience for defeating {elf.Name}.");
-			user.Experience += 10;
-			user.LevelUp();  // Level up the player if enough experience is gained
-			Console.WriteLine($"{user.Name} is now level {user.Level + 1}!");
-			Functions.ClearScreen();
 
 			// Adding new powerful item: Greater Potion
 			inventory.AddItem("Greater Potion", 10);
