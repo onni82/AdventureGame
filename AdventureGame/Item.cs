@@ -34,10 +34,10 @@
 			{ "Greater Potion", "Heals 25 HP per item" }
 		};
 
-		public static string GetItemDescription(string itemName)
+		public string GetItemDescription()
 		{
 			// Try to get the description from the dictionary
-			return descriptions.TryGetValue(itemName, out string description)
+			return descriptions.TryGetValue(Name, out string description)
 				? description
 				: "No description";
 		}
