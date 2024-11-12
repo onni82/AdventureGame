@@ -11,8 +11,10 @@ namespace AdventureGame
 	{
 		private List<Item> inventory;
 		private readonly object lockObject = new object();
+		public int Count => inventory.Count;
 
-        public Inventory()
+
+		public Inventory()
         {
 			inventory = new List<Item>();
         }
