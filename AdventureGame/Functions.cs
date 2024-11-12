@@ -64,8 +64,8 @@ namespace AdventureGame
 							break;
 						}
 
-						for (int i = 0; i < itemList.Count; i++)
-							Console.WriteLine($"[{i}] {itemList[i].Amount} {itemList[i].Name}. {itemList[i].GetItemDescription()}.");
+						for (int i = 0; i < inv.Count; i++)
+							Console.WriteLine($"[{i}] {inv[i].Amount} {itemList[i].Name}. {itemList[i].GetItemDescription()}.");
 
 						Console.Write("Your pick: ");
 						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < itemList.Count)
