@@ -40,9 +40,16 @@
 		// Rewards entity with set amount of experience points
 		public void RewardExp(int experienceAmount)
 		{
-			Experience += experienceAmount;
-			Console.WriteLine($"Player {Name} gained {experienceAmount} experience.");
-			LevelUp();
+			if (experienceAmount > 0)
+			{
+				Experience += experienceAmount;
+				Console.WriteLine($"Player {Name} gained {experienceAmount} experience.");
+				LevelUp();
+			}
+			else
+			{
+				Console.WriteLine("Invalid experience amount.");
+			}
 		}
 
 		// Increases entity level if required experience points are met
