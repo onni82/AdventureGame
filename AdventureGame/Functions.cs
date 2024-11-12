@@ -18,7 +18,7 @@ namespace AdventureGame
 
 		// Calls a battle
 		// Accepts a player object, enemy object and inventory to be used during battle
-		public static void BattleEntity(Entity player, Entity enemy, List<Item> itemList)
+		public static void BattleEntity(Entity player, Entity enemy, Inventory inv)
 		{
 			Console.WriteLine($"Initiating battle with level {enemy.Level + 1} {enemy.Name} who has {enemy.Health} HP.");
 			Console.WriteLine($"Level {player.Level + 1} player {player.Name} has {player.Health} HP.");
@@ -58,7 +58,7 @@ namespace AdventureGame
 						break;
 
 					case 'i' or 'I':
-						if (itemList.Count == 0)
+						if (inv.Count == 0)
 						{
 							Console.WriteLine("You have no items in your inventory.");
 							break;
