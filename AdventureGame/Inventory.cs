@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventureGame
 {
-	public class ItemManager
+	public class Inventory
 	{
 		public static Item? IsItemInInventory(List<Item> itemList, string itemName)
 		{
