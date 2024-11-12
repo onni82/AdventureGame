@@ -8,12 +8,6 @@ namespace AdventureGame
 {
 	public class Functions
 	{
-		public static string GetPlayerName()
-		{
-			Console.Write("What's your name? ");
-			return Console.ReadLine();
-		}
-
 		public static void ClearScreen()
 		{
 			Console.WriteLine("Hit a key to proceed.");

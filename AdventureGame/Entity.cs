@@ -27,6 +27,7 @@
 			{ 13, 700 }
 		};
 
+		// Retrieves amount of experince points needed to level up
 		public int GetRequiredExperience()
 		{
 			// Try to get the description from the dictionary
@@ -35,6 +36,7 @@
 				: 0;
 		}
 
+		// Rewards entity with set amount of experience points
 		public void RewardExp(int experienceAmount)
 		{
 			Experience += experienceAmount;
@@ -42,6 +44,7 @@
 			LevelUp();
 		}
 
+		// Increases entity level if required experience points are met
 		public void LevelUp()
 		{
 			while (Experience >= GetRequiredExperience())
@@ -49,6 +52,13 @@
 				Level++;
 				Console.WriteLine($"{Name} leveled up to level {Level + 1}.");
 			}
+		}
+
+		// Gets a string from Console.ReadLine
+		public static string GetPlayerName()
+		{
+			Console.Write("What's your name? ");
+			return Console.ReadLine();
 		}
 	}
 }
