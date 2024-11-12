@@ -11,8 +11,8 @@ namespace AdventureGame
 	{
 		private List<Item> inventory;
 		private readonly object lockObject = new object();
-		public int Count => inventory.Count;
-
+		public int Count => inventory.Count; // Enables the Count() method that is usually just usable on Lists and not custom classes
+		public Item this[int index] => inventory[index]; // Enables indexing
 
 		public Inventory()
         {
