@@ -10,7 +10,8 @@ namespace AdventureGame
 		{
 			Entity user = new Entity();
 			user.Name = args.Length > 0 ? args[0] : user.GetPlayerName();
-			user.Health = 20;
+			user.Health = 120;
+			user.MaxHealth = 120;
 			user.Level = 0;
 			user.Experience = 0;
 
@@ -20,7 +21,7 @@ namespace AdventureGame
 			Inventory inventory = new();
 			inventory.AddItem("Potion", 2);
 
-			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
+			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, MaxHealth = 25, Level = 0 };
 			inventory.SortByName();
 			Functions.BattleEntity(user, orc, inventory);
 			Functions.ClearScreen();
@@ -28,7 +29,7 @@ namespace AdventureGame
 			inventory.AddItem("Potion", 5);
 			inventory.SortByName();
 
-			Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
+			Entity elf = new() { Name = "Elven King", Health = 25, MaxHealth = 25, Level = 0 };
 			inventory.SortByName();
 			Functions.BattleEntity(user, elf, inventory);
 			Functions.ClearScreen();
@@ -37,7 +38,7 @@ namespace AdventureGame
 			inventory.SortByName();
 			Functions.ClearScreen();
 
-			Entity ent = new() { Name = "Ent", Health = 30, Level = 1 };
+			Entity ent = new() { Name = "Ent", Health = 30, MaxHealth = 30, Level = 1 };
 			inventory.SortByName();
 			Functions.BattleEntity(user, ent, inventory);
 			Functions.ClearScreen();

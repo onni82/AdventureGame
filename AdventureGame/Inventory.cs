@@ -75,10 +75,14 @@ namespace AdventureGame
 				if (itemName == "Potion")
 				{
 					player.Health += 15;
+					if (player.Health > player.MaxHealth)
+						player.Health = player.MaxHealth;
 				}
 				else if (itemName == "Greater Potion")
 				{
 					player.Health += 25;
+					if (player.Health > player.MaxHealth)
+						player.Health = player.MaxHealth;
 				}
 
 				item.Amount -= 1;
