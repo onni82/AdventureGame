@@ -20,14 +20,8 @@
 		// Prints amount + item name and adds S at the end if plural
 		public override string ToString()
 		{
-			if (Amount < 2)
-			{
-				return $"{Amount} {Name}";
-			}
-			else
-			{
-				return $"{Amount} {Name}s";
-			}
+			var itemName = Amount < 2 ? Name : Name + "s";
+			return $"{Amount} {itemName}";
 			
 		}
 
