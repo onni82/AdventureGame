@@ -71,26 +71,13 @@ namespace AdventureGame
 
 			if (item != null)
 			{
-				if (itemName == "Potion")
-				{
-					player.Health += 15;
-					if (player.Health > player.MaxHealth)
-						player.Health = player.MaxHealth;
-				}
-				else if (itemName == "Greater Potion")
-				{
-					player.Health += 25;
-					if (player.Health > player.MaxHealth)
-						player.Health = player.MaxHealth;
-				}
-
+				item.Use(player);
 				item.Amount -= 1;
 				Console.WriteLine($"Used {itemName} on {player.Name}.");
 
 				if (item.Amount == 0)
 				{
-					var index = inventory.FindIndex(item => item.Name == itemName);
-					inventory.RemoveAt(index);
+					inventory.Remove(item);
 				}
 			}
 		}
