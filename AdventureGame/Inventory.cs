@@ -16,6 +16,7 @@ namespace AdventureGame
 			inventory = new List<Item>();
         }
 
+		// Checks if item is in inventory and returns item
         public Item? IsItemInInventory(string itemName)
 		{
 			var item = inventory.Find(item => item.Name == itemName);
@@ -30,6 +31,8 @@ namespace AdventureGame
 			}
 			
 		}
+
+		// Adds item to inventory
 		public void AddItem(string itemName, int itemAmount)
 		{
 			lock (lockObject)
@@ -59,6 +62,7 @@ namespace AdventureGame
 			}
 		}
 
+		// Uses item and decreases amount in inventory
 		public void UseItem(string itemName, Entity player)
 		{
 			var item = inventory.Find(item => item.Name == itemName);
