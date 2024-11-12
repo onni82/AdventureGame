@@ -61,7 +61,8 @@ namespace AdventureGame
 						if (inv.Count == 0)
 						{
 							Console.WriteLine("You have no items in your inventory.");
-							break;
+							ClearScreen();
+							return; // Exit the current `case` block and go back to the start of the loop
 						}
 
 						for (int i = 0; i < inv.Count; i++)
