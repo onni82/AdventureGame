@@ -11,8 +11,8 @@ namespace AdventureGame
 			Entity user = new Entity
 			{
 				Name = args.Length > 0 ? args[0] : GetPlayerName(),
-				Health = 120,
 				MaxHealth = 120,
+				Health = 120,
 				Level = 0,
 				Experience = 0
 			};
