@@ -45,7 +45,7 @@
 			// Try to get the description from the dictionary
 			return descriptions.TryGetValue(Name, out string description)
 				? description
-				: "No description";
+				: $"No description for {Name}";
 		}
 	}
 }
