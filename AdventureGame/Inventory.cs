@@ -40,28 +40,27 @@ namespace AdventureGame
 		{
 			lock (lockObject)
 			{
+				var item = inventory.Find(item => item.Name == itemName);
 
-			}
-			var item = inventory.Find(item => item.Name == itemName);
+				if (item != null)
+				{
+					item.Amount += itemAmount;
 
-			if (item != null)
-			{
-				item.Amount += itemAmount;
-				
-			}
-			else
-			{
-				item = new Item { Name = itemName, Amount = itemAmount };
-				inventory.Add(item);
-			}
+				}
+				else
+				{
+					item = new Item { Name = itemName, Amount = itemAmount };
+					inventory.Add(item);
+				}
 
-			if (itemAmount > 1)
-			{
-				Console.WriteLine($"Picked up {itemAmount} {item.Name}s. Now a total of {item.Amount}.");
-			}
-			else
-			{
-				Console.WriteLine($"Picked up {itemAmount} {item.Name}. Now a total of {item.Amount}.");
+				if (itemAmount > 1)
+				{
+					Console.WriteLine($"Picked up {itemAmount} {item.Name}s. Now a total of {item.Amount}.");
+				}
+				else
+				{
+					Console.WriteLine($"Picked up {itemAmount} {item.Name}. Now a total of {item.Amount}.");
+				}
 			}
 		}
 
