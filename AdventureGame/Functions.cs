@@ -24,11 +24,13 @@ namespace AdventureGame
 			Console.WriteLine($"Level {player.Level + 1} player {player.Name} has {player.Health} HP.");
 			ClearScreen();
 
-			while (true) // Makes the battle an infinite loop until battle is over
+			bool battleInProgress = true;
+			while (battleInProgress) // Makes the battle an infinite loop until battleInProgress = false
 			{
 				if (player.Health < 1) // Checks if player health is below 1
 				{
 					Console.WriteLine($"Player {player.Name} died. Running away from battle.");
+					battleInProgress = false;
 					break;
 				}
 				if (enemy.Health < 1) // Checks if enemy health is below 1
@@ -36,6 +38,7 @@ namespace AdventureGame
 					Console.WriteLine($"{enemy.Name} died.");
 					player.RewardExp((enemy.Level + 1) * 15);
 					player.LevelUp();
+					battleInProgress = false;
 					break;
 				}
 
@@ -48,6 +51,7 @@ namespace AdventureGame
 				if (optionInBattle == 'r' || optionInBattle == 'R')
 				{
 					Console.WriteLine($"Player {player.Name} ran away from battle.");
+					battleInProgress = false;
 					break;
 				}
 
@@ -65,7 +69,7 @@ namespace AdventureGame
 						{
 							Console.WriteLine("You have no items in your inventory.");
 							ClearScreen();
-							return; // Exit the current `case` block and go back to the start of the loop
+							return; // Exit the current case block and go back to the start of the loop
 						}
 
 						for (int i = 0; i < inv.Count; i++)
@@ -76,6 +80,10 @@ namespace AdventureGame
 						{
 							inv.UseItem(inv[itemToUse].Name, player);
 						}
+						break;
+
+					default:
+                        Console.WriteLine("Invalid optioin! Try again.");
 						break;
 				}
 
