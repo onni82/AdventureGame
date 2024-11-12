@@ -43,7 +43,7 @@ namespace AdventureGame
 				}
 
 				// Asks for option in battle menu
-				Console.WriteLine("What do you want to do? (A)ttack, (I)tem or (R)un?: ");
+				Console.WriteLine("What do you want to do? (A)ttack, (D)efend, (I)tem or (R)un?: ");
 				char optionInBattle = Console.ReadKey().KeyChar;
 				Console.WriteLine();
 
@@ -86,6 +86,11 @@ namespace AdventureGame
 							Console.WriteLine("Invalid selection. Please choose a valid item.");
 						}
 						return;
+
+					case 'd' or 'D':
+						Console.WriteLine($"{player.Name} braces for the next attack.");
+						// Modify player stats here (e.g., reduce incoming damage)
+						break;
 
 					default:
                         Console.WriteLine("Invalid option! Try again.");
