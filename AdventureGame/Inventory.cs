@@ -20,18 +20,10 @@ namespace AdventureGame
         }
 
 		// Checks if item is in inventory and returns item
+		// Returns null if not found
         public Item? IsItemInInventory(string itemName)
 		{
-			var item = inventory.Find(item => item.Name == itemName);
-
-			if (item != null)
-			{
-				return item;
-			}
-			else
-			{
-				return null;
-			}
+			return inventory.Find(item => item.Name == itemName);
 			
 		}
 
