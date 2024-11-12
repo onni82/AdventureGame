@@ -41,5 +41,27 @@
 				? description
 				: $"No description for {Name}";
 		}
+
+		// Uses item on Entity object
+		public void Use(Entity player)
+		{
+			if (Name == "Potion")
+			{
+				player.Health += 15;
+				if (player.Health > player.MaxHealth)
+				{
+					player.Health = player.MaxHealth;
+				}
+			}
+			else if (Name == "Greater Potion")
+			{
+				player.Health += 25;
+				if (player.Health > player.MaxHealth)
+				{
+					player.Health = player.MaxHealth;
+				}
+			}
+			// Add more items and their effects here
+		}
 	}
 }
