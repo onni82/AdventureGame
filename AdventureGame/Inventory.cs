@@ -59,9 +59,9 @@ namespace AdventureGame
 			}
 		}
 
-		public void UseItem(List<Item> itemList, string itemName, Entity player)
+		public void UseItem(string itemName, Entity player)
 		{
-			var item = itemList.Find(item => item.Name == itemName);
+			var item = inventory.Find(item => item.Name == itemName);
 
 			if (item != null)
 			{
@@ -79,8 +79,8 @@ namespace AdventureGame
 
 				if (item.Amount == 0)
 				{
-					var index = itemList.FindIndex(item => item.Name == itemName);
-					itemList.RemoveAt(index);
+					var index = inventory.FindIndex(item => item.Name == itemName);
+					inventory.RemoveAt(index);
 				}
 			}
 		}
