@@ -84,11 +84,13 @@ namespace AdventureGame
 		}
 
 		// Sorts items by Amount
-		public void SortByAmount()
+		public void SortByAmount(bool descending = true)
 		{
 			lock (lockObject)
 			{
-				inventory = inventory.OrderByDescending(item => item.Amount).ToList();
+				inventory = descending
+					? inventory.OrderByDescending(item => item.Amount).ToList()
+					: inventory.OrderBy(item => item.Amount).ToList();
 			}
 		}
 
