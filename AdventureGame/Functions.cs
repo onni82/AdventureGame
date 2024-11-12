@@ -70,7 +70,7 @@ namespace AdventureGame
 						Console.Write("Your pick: ");
 						if (int.TryParse(Console.ReadLine(), out int itemToUse) && itemToUse < itemList.Count)
 						{
-							UseItem(itemList, itemList[itemToUse].Name, player);
+							ItemManager.UseItem(itemList, itemList[itemToUse].Name, player);
 						}
 						break;
 				}
