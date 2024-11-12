@@ -15,7 +15,7 @@ namespace AdventureGame
 			user.Experience = 0;
 
 			Console.WriteLine($"Hello {user.Name}. Let's start your adventure. You start with two potions.");
-			ClearScreen();
+			Functions.ClearScreen();
 
 			Inventory inventory = new();
 			inventory.AddItem("Potion", 2);
@@ -23,7 +23,7 @@ namespace AdventureGame
 			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
 			inventory.SortByName();
 			BattleEntity(user, orc, inventory);
-			ClearScreen();
+			Functions.ClearScreen();
 
 			inventory.AddItem("Potion", 5);
 			inventory.SortByName();
@@ -31,19 +31,19 @@ namespace AdventureGame
 			Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
 			inventory.SortByName();
 			BattleEntity(user, elf, inventory);
-			ClearScreen();
+			Functions.ClearScreen();
 
 			inventory.AddItem("Greater Potion", 10);
 			inventory.SortByName();
-			ClearScreen();
+			Functions.ClearScreen();
 
 			Entity ent = new() { Name = "Ent", Health = 30, Level = 1 };
 			inventory.SortByName();
 			BattleEntity(user, ent, inventory);
-			ClearScreen();
+			Functions.ClearScreen();
 
 			Console.WriteLine("Congratulations! You finished the game.");
-			ClearScreen();
+			Functions.ClearScreen();
 		}
 	}
 }
