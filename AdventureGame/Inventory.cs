@@ -8,9 +8,17 @@ namespace AdventureGame
 {
 	public class Inventory
 	{
-		public static Item? IsItemInInventory(List<Item> itemList, string itemName)
+		private List<Item> inventory;
+		private readonly object lockObject = new object();
+
+        public Inventory()
+        {
+			inventory = new List<Item>();
+        }
+
+        public Item? IsItemInInventory(string itemName)
 		{
-			var item = itemList.Find(item => item.Name == itemName);
+			var item = inventory.Find(item => item.Name == itemName);
 
 			if (item != null)
 			{
@@ -22,9 +30,13 @@ namespace AdventureGame
 			}
 			
 		}
-		public static void AddItem(List<Item> itemList, string itemName, int itemAmount)
+		public void AddItem(string itemName, int itemAmount)
 		{
-			var item = itemList.Find(item => item.Name == itemName);
+			lock (lockObject)
+			{
+
+			}
+			var item = inventory.Find(item => item.Name == itemName);
 
 			if (item != null)
 			{
@@ -34,7 +46,7 @@ namespace AdventureGame
 			else
 			{
 				item = new Item { Name = itemName, Amount = itemAmount };
-				itemList.Add(item);
+				inventory.Add(item);
 			}
 
 			if (itemAmount > 1)
@@ -47,7 +59,7 @@ namespace AdventureGame
 			}
 		}
 
-		public static void UseItem(List<Item> itemList, string itemName, Entity player)
+		public void UseItem(List<Item> itemList, string itemName, Entity player)
 		{
 			var item = itemList.Find(item => item.Name == itemName);
 
@@ -72,15 +84,5 @@ namespace AdventureGame
 				}
 			}
 		}
-
-		//public static string GetItemDescription(string itemName)
-		//{
-		//	return itemName switch
-		//	{
-		//		"Potion" => "Heals 15 HP per item",
-		//		"Greater Potion" => "Heals 25 HP per item",
-		//		_ => "No description"
-		//	};
-		//}
 	}
 }
