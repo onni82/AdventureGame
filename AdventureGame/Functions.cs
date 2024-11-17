@@ -12,7 +12,7 @@ namespace AdventureGame
 		public static void ClearScreen()
 		{
 			Console.WriteLine("Hit a key to proceed.");
-			Console.ReadKey();
+			Console.ReadKey(true);
 			Console.Clear();
 		}
 
@@ -20,7 +20,7 @@ namespace AdventureGame
 		public static void KeyPrompt()
 		{
 			Console.WriteLine("Hit a key to proceed.");
-			Console.ReadKey();
+			Console.ReadKey(true);
 		}
 
 		// Calls a battle
