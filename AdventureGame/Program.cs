@@ -85,7 +85,7 @@ namespace AdventureGame
 					Functions.KeyPrompt();
 					Console.WriteLine("You venture into the dense forest and encounter an elf on a white horse...");
 					Functions.KeyPrompt();
-					Console.WriteLine("After you question the elf's identity, he presents himself as the elven king (who has gone as of late).");
+					Console.WriteLine("After you question the elf's identity, he presents himself as the elven king (who has gone mad as of late).");
 					Functions.ClearScreen();
 
 					// Encounter with Elven King
