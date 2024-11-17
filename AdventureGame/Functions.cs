@@ -16,6 +16,13 @@ namespace AdventureGame
 			Console.Clear();
 		}
 
+		// Promts the user to hit a key without clearing the screen
+		public static void KeyPrompt()
+		{
+			Console.WriteLine("Hit a key to proceed.");
+			Console.ReadKey();
+		}
+
 		// Calls a battle
 		// Accepts a player object, enemy object and inventory to be used during battle
 		public static void BattleEntity(Entity player, Entity enemy, Inventory inv)
