@@ -79,6 +79,11 @@ namespace AdventureGame
 
 				case 2: // The player finds a mysterious path to the forest and encounters the elven king
 					Console.WriteLine("You have successfully defeated Zug Zug the Orc. A mysterious path lies ahead. You decide to explore.");
+					Functions.KeyPrompt();
+					Console.WriteLine("You venture into the dense forest and ecnounter an elf on a white horse...");
+					Functions.KeyPrompt();
+					Console.WriteLine("After you question the elf's identity, he presents himself as the elven king (who has gone as of late).");
+					Functions.ClearScreen();
 					Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
 					Functions.BattleEntity(user, elf, inventory);
 					Functions.ClearScreen();
