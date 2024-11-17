@@ -69,7 +69,7 @@ namespace AdventureGame
 					goto case 1;
 
 				case 1: // First battle: Orc Zug Zug
-					Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
+					Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, MaxHealth = 25, Level = 0 };
 					Functions.BattleEntity(user, orc, inventory);
 					Functions.ClearScreen();
 					inventory.AddItem("Potion", 5);
@@ -84,7 +84,7 @@ namespace AdventureGame
 					Functions.KeyPrompt();
 					Console.WriteLine("After you question the elf's identity, he presents himself as the elven king (who has gone as of late).");
 					Functions.ClearScreen();
-					Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
+					Entity elf = new () { Name = "Elven King", MaxHealth = 25, Health = 25, Level = 0 };
 					Functions.BattleEntity(user, elf, inventory);
 					Functions.ClearScreen();
 					inventory.AddItem("Greater Potion", 10);
@@ -93,7 +93,7 @@ namespace AdventureGame
 					goto case 3;
 
 				case 3:
-					Entity ent = new() { Name = "Ent", Health = 30, Level = 1 };
+					Entity ent = new () { Name = "Ent", MaxHealth = 30, Health = 30, Level = 1 };
 					Functions.BattleEntity(user, ent, inventory);
 					Functions.ClearScreen();
 					storyStage = 4;
