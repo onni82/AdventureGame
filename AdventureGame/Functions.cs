@@ -51,7 +51,7 @@ namespace AdventureGame
 
 				// Asks for option in battle menu
 				Console.WriteLine("What do you want to do? (A)ttack, (D)efend, (I)tem or (R)un?: ");
-				char optionInBattle = Console.ReadKey().KeyChar;
+				char optionInBattle = Console.ReadKey(true).KeyChar;
 				Console.WriteLine();
 
 				// Checks for user option to run before doing switch case
