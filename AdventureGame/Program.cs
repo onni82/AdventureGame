@@ -68,7 +68,7 @@ namespace AdventureGame
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 1;
 
-				case 1:
+				case 1: // First battle: Orc Zug Zug
 					Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
 					Functions.BattleEntity(user, orc, inventory);
 					Functions.ClearScreen();
@@ -77,7 +77,8 @@ namespace AdventureGame
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 2;
 
-				case 2:
+				case 2: // The player finds a mysterious path to the forest and encounters the elven king
+					Console.WriteLine("You have successfully defeated Zug Zug the Orc. A mysterious path lies ahead. You decide to explore.");
 					Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
 					Functions.BattleEntity(user, elf, inventory);
 					Functions.ClearScreen();
