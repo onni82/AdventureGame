@@ -73,21 +73,28 @@ namespace AdventureGame
 					Functions.BattleEntity(user, orc, inventory);
 					Functions.ClearScreen();
 					inventory.AddItem("Potion", 5);
+
+					// Sets story stage
 					storyStage = 2;
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 2;
 
-				case 2: // The player finds a mysterious path to the forest and encounters the elven king
+				case 2: // Second battle: Elven King
+					// The player finds a mysterious path to the forest
 					Console.WriteLine("You have successfully defeated Zug Zug the Orc. A mysterious path lies ahead. You decide to explore.");
 					Functions.KeyPrompt();
 					Console.WriteLine("You venture into the dense forest and encounter an elf on a white horse...");
 					Functions.KeyPrompt();
 					Console.WriteLine("After you question the elf's identity, he presents himself as the elven king (who has gone as of late).");
 					Functions.ClearScreen();
+
+					// Encounter with Elven King
 					Entity elf = new () { Name = "Elven King", MaxHealth = 25, Health = 25, Level = 0 };
 					Functions.BattleEntity(user, elf, inventory);
 					Functions.ClearScreen();
 					inventory.AddItem("Greater Potion", 10);
+
+					// Sets story stage
 					storyStage = 3;
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 3;
@@ -96,11 +103,34 @@ namespace AdventureGame
 					Entity ent = new () { Name = "Ent", MaxHealth = 30, Health = 30, Level = 1 };
 					Functions.BattleEntity(user, ent, inventory);
 					Functions.ClearScreen();
+
+					// Sets story stage
 					storyStage = 4;
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 4;
 
-				case 4:
+				case 4: // Fourth battle: Ancient Dragon
+					// Player earns a magical sword after the battle
+					Console.WriteLine("You find a magical sword after defeating the Ent. This powerful weapon will help you in future battles.");
+					inventory.AddItem("Magic Sword", 1);
+					Functions.KeyPrompt();
+
+					// Encounter with the final boss
+					Console.WriteLine("You reach the deepest part of the forest where the ancient dragon awaits...");
+					Entity dragon = new Entity { Name = "Ancient Dragon", MaxHealth = 100, Health = 100, Level = 2 };
+					Functions.BattleEntity(user, dragon, inventory);
+					Functions.ClearScreen();
+
+					// Sets story stage
+					storyStage = 5;
+					SaveGame.Save(user, inventory, storyStage);
+					goto case 5;
+
+				case 5: // Fifth battle: To be decided
+					storyStage = 6;
+					goto case 6;
+
+				case 6:
 					Console.WriteLine("Congratulations! You finished the game.");
 					Functions.ClearScreen();
 					break;
