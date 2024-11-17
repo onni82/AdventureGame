@@ -11,10 +11,10 @@ namespace AdventureGame
 		public int PlayerLevel { get; set; }
 		public int PlayerExperience { get; set; }
 		public List<Item> Inventory { get; set; }
-		public string StoryStage { get; set; } // Added StoryStage to track progress
+		public int StoryStage { get; set; } // Added StoryStage to track progress
 
 		// Constructor
-		public SaveData(Entity player, Inventory inventory, string storyStage)
+		public SaveData(Entity player, Inventory inventory, int storyStage)
 		{
 			PlayerName = player.Name;
 			PlayerHealth = player.Health;

@@ -8,92 +8,95 @@ namespace AdventureGame
 	{
 		static void Main(string[] args)
 		{
-			Entity user = new Entity
+			// Helper method to create a new player
+			Entity CreateNewPlayer()
 			{
-				Name = args.Length > 0 ? args[0] : GetPlayerName(),
-				MaxHealth = 120,
-				Health = 120,
-				Level = 0,
-				Experience = 0
-			};
-			
+				Entity newPlayer = new Entity
+				{
+					Name = args.Length > 0 ? args[0] : GetPlayerName(),
+					Health = 100,
+					Level = 1,
+					Experience = 0
+				};
+				return newPlayer;
+			}
 
-			Console.WriteLine($"Hello {user.Name}. Let's start your adventure. You start with two potions.");
-			Functions.ClearScreen();
+			// Helper method to get player name
+			static string GetPlayerName()
+			{
+				Console.Write("Enter your character's name: ");
+				return Console.ReadLine();
+			}
 
-			// Initialize inventory and items
+			Entity user;
 			Inventory inventory = new Inventory();
-			inventory.AddItem("Potion", 2);
-			inventory.SortByName();
+			int storyStage = 0; // Track the story stage
 
-			// First battle: Orc Zug Zug
-			Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, MaxHealth = 25, Level = 0 };
-			inventory.SortByName();
-			Functions.BattleEntity(user, orc, inventory);
-			Functions.ClearScreen();
+			Console.WriteLine("Welcome to the Adventure Game!");
+			Console.WriteLine("Would you like to load a previous game? (Y/N): ");
+			string loadChoice = Console.ReadLine().ToLower();
 
-			// The player finds a mysterious path to the forest
-			Console.WriteLine("You have successfully defeated Zug Zug the Orc. A mysterious path lies ahead. Do you wish to explore it?");
-			string pathChoice = Console.ReadLine().ToLower();
-
-			if (pathChoice == "yes")
+			if (loadChoice == "y")
 			{
-				// The player enters the forest
-				Console.WriteLine("You venture into the dense forest...");
-				Functions.ClearScreen();
-
-				// Encounter with the Elven King
-				inventory.AddItem("Potion", 5);
-				inventory.SortByName();
-
-				Entity elf = new Entity { Name = "Elven King", MaxHealth = 25, Health = 25, Level = 0 };
-				Functions.BattleEntity(user, elf, inventory);
-				Functions.ClearScreen();
-
-				// Reward system and healing
-				Console.WriteLine($"You earned {10} experience for defeating {elf.Name}.");
-				user.Experience += 10;
-				user.LevelUp();  // Level up the player if enough experience is gained
-				Console.WriteLine($"{user.Name} is now level {user.Level + 1}!");
-				Functions.ClearScreen();
+				if (SaveGame.Load(out user, out inventory, out storyStage))
+				{
+					// Game successfully loaded
+					Console.WriteLine(value: $"Welcome back, {user.Name}!");
+				}
+				else
+				{
+					// No save found or error during loading
+					user = CreateNewPlayer();
+					Console.WriteLine($"New player created: {user.Name}.");
+				}
 			}
 			else
 			{
-				// If the player doesn't explore the forest
-				Console.WriteLine("You choose not to explore the forest and head towards the town.");
-				Functions.ClearScreen();
+				user = CreateNewPlayer();
+				Console.WriteLine($"New player created: {user.Name}.");
 			}
 
-			// Adding new powerful item: Greater Potion
-			inventory.AddItem("Greater Potion", 10);
-			inventory.SortByName();
+			// Jump to the story stage where the player left off
+			switch (storyStage)
+			{
+				case 0:
+					Console.WriteLine($"Hello {user.Name}. Let's start your adventure. You start with two potions.");
+					Functions.ClearScreen();
+					storyStage = 1;
+					SaveGame.Save(user, inventory, storyStage);
+					goto case 1;
 
-			// Battle with an Ent in the forest
-			Entity ent = new Entity { Name = "Ent", MaxHealth = 30, Health = 30, Level = 1 };
-			Functions.BattleEntity(user, ent, inventory);
-			Functions.ClearScreen();
+				case 1:
+					Entity orc = new() { Name = "Zug Zug the Orc", Health = 25, Level = 0 };
+					Functions.BattleEntity(user, orc, inventory);
+					Functions.ClearScreen();
+					inventory.AddItem("Potion", 5);
+					storyStage = 2;
+					SaveGame.Save(user, inventory, storyStage);
+					goto case 2;
 
-			// Player earns a magical sword after the battle
-			Console.WriteLine("You find a magical sword after defeating the Ent. This powerful weapon will help you in future battles.");
-			inventory.AddItem("Magic Sword", 1);
+				case 2:
+					Entity elf = new() { Name = "Elven King", Health = 25, Level = 0 };
+					Functions.BattleEntity(user, elf, inventory);
+					Functions.ClearScreen();
+					inventory.AddItem("Greater Potion", 10);
+					storyStage = 3;
+					SaveGame.Save(user, inventory, storyStage);
+					goto case 3;
 
-			// Encounter with the final boss
-			Console.WriteLine("You reach the deepest part of the forest where the ancient dragon awaits...");
-			Entity dragon = new Entity { Name = "Ancient Dragon", MaxHealth = 100, Health = 100, Level = 2 };
-			Functions.BattleEntity(user, dragon, inventory);
-			Functions.ClearScreen();
+				case 3:
+					Entity ent = new() { Name = "Ent", Health = 30, Level = 1 };
+					Functions.BattleEntity(user, ent, inventory);
+					Functions.ClearScreen();
+					storyStage = 4;
+					SaveGame.Save(user, inventory, storyStage);
+					goto case 4;
 
-			// Final message and congratulations
-			Console.WriteLine("Congratulations! You have defeated the Ancient Dragon and saved the kingdom.");
-			Console.WriteLine("Your adventure ends here, but many more await you!");
-			Functions.ClearScreen();
-		}
-
-		// Helper method to get player name
-		static string GetPlayerName()
-		{
-			Console.Write("Enter your character's name: ");
-			return Console.ReadLine();
+				case 4:
+					Console.WriteLine("Congratulations! You finished the game.");
+					Functions.ClearScreen();
+					break;
+			}
 		}
 	}
 }

@@ -4,12 +4,12 @@ using System.IO;
 
 namespace AdventureGame
 {
-	public static class SaveLoadSystem
+	public static class SaveGame
 	{
 		private static string saveFilePath = "savegame.json";
 
 		// Save the game state to a file, including the story stage
-		public static void SaveGame(Entity player, Inventory inventory, string storyStage)
+		public static void Save(Entity player, Inventory inventory, int storyStage)
 		{
 			SaveData saveData = new SaveData(player, inventory, storyStage);
 			string jsonData = JsonConvert.SerializeObject(saveData, Formatting.Indented);
@@ -20,11 +20,11 @@ namespace AdventureGame
 		}
 
 		// Load the game state from a file, including the story stage
-		public static bool LoadGame(out Entity player, out Inventory inventory, out string storyStage)
+		public static bool Load(out Entity player, out Inventory inventory, out int storyStage)
 		{
 			player = null;
 			inventory = new Inventory();
-			storyStage = string.Empty;
+			storyStage = 0;
 
 			if (File.Exists(saveFilePath))
 			{
