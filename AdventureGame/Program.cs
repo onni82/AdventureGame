@@ -61,9 +61,9 @@ namespace AdventureGame
 			{
 				case 0:
 					Console.WriteLine($"Hello {user.Name}. Let's start your adventure. You start with two potions.");
+					Functions.ClearScreen();
 					inventory.AddItem("Potion", 2);
 					inventory.SortByName();
-					Functions.ClearScreen();
 					storyStage = 1;
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 1;
