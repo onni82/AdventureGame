@@ -92,7 +92,7 @@ namespace AdventureGame
 					SaveGame.Save(user, inventory, storyStage);
 					goto case 3;
 
-				case 3:
+				case 3: // Third battle: Ent
 					Entity ent = new () { Name = "Ent", MaxHealth = 30, Health = 30, Level = 1 };
 					Functions.BattleEntity(user, ent, inventory);
 					Functions.ClearScreen();
